@@ -1,24 +1,33 @@
 const { MongoClient } = require('mongodb')
 const config = require('./variables')
+const schemas = require('../schema')
 
-const uri = config.mongoUri
+const uri = config.mongoUri + '/' + config.mongoDb
 const client = new MongoClient(uri, {
   useUnifiedTopology: true,
   maxPoolSize: 5,
   auth: {
     user: config.mongoUser,
     password: config.mongoPassword
-  },
-  dbName: config.mongoDb
+  }
 })
 
 async function run () {
   try {
-    await client.connect()
+    const conn = await client.connect()
     console.log('Connected successfully to mongo instance')
+    conn.db(config.mongoDb).listCollections().toArray((err, collections) => {
+      if (err) {
+        throw new Error(err)
+      }
+      if (!collections.length) {
+        schemas.userSchema(conn)
+        schemas.listSchema(conn)
+      }
+    })
   } catch (err) {
-    console.log(err)
     await client.close()
+    throw new Error(err)
   }
 }
 
