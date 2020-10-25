@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb')
-const config = require('./variables')
-const schemas = require('../schema')
+const config = require('./variables.config')
+const schemas = require('../schemas')
+const UsersDao = require('../dao/user/user.dao')
 
 const uri = config.mongoUri + '/' + config.mongoDb
 const client = new MongoClient(uri, {
@@ -24,6 +25,7 @@ async function run () {
         schemas.userSchema(conn)
         schemas.listSchema(conn)
       }
+      UsersDao.setDb(conn)
     })
   } catch (err) {
     await client.close()
