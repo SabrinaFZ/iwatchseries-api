@@ -20,10 +20,7 @@ async function registerService (req) {
 async function loginService (req) {
   try {
     if (!req.body.email && !req.body.password) {
-      throw new Error({
-        status: 400,
-        errorMessage: 'No username and/or password were provided. Try again!'
-      })
+      throw new Error('No username and/or password were provided. Try again!')
     }
     const user = await UsersDao.findUser(req.body.email)
     if (!user) {
