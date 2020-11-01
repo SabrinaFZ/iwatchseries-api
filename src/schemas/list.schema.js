@@ -1,4 +1,4 @@
-const config = require('../config/variables')
+const config = require('../config/variables.config')
 
 const listSchema = async conn => {
   const db = conn.db(config.mongoDb)
