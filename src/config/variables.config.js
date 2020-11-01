@@ -12,5 +12,6 @@ module.exports = {
   mongoUri: process.env.MONGO_CLIENT_URI,
   mongoDb: process.env.MONGO_DB,
   mongoUser: process.env.MONGO_USER,
-  mongoPassword: process.env.MONGO_PASSWORD
+  mongoPassword: process.env.MONGO_PASSWORD,
+  jwtSecret: process.env.JWT_SECRET
 }

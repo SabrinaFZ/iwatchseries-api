@@ -1,4 +1,4 @@
-const { registerService } = require('../../services/auth/auth.service')
+const { registerService, loginService } = require('../../services/auth/auth.service')
 
 const CREATE_USER_SUCESS = 'User created successfully!'
 
@@ -11,6 +11,16 @@ async function registerController (req, res) {
   }
 }
 
+async function loginController (req, res) {
+  try {
+    const authDTO = await loginService(req)
+    return res.status(200).send(authDTO)
+  } catch (error) {
+    return res.status(500).send({ message: error.message || 'Ups, an internal error have occurred!' })
+  }
+}
+
 module.exports = {
-  registerController
+  registerController,
+  loginController
 }

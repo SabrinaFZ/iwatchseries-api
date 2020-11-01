@@ -13,6 +13,17 @@ class UsersDao {
       throw new Error(err)
     }
   }
+
+  static async findUser (email) {
+    try {
+      const user = await this.usersCollection.findOne({
+        email
+      })
+      return user
+    } catch (err) {
+      throw new Error()
+    }
+  }
 }
 
 module.exports = UsersDao
