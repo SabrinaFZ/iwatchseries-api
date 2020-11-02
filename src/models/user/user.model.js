@@ -1,13 +1,23 @@
 class User {
-  constructor ({ id, email, password, name = '', bio = '', country = 'en' }) {
+  constructor ({ id, email, password, name, bio, country}) {
     if (id) {
       this.id = id
     }
-    this.email = email
-    this.password = password
-    this.name = name
-    this.bio = bio
-    this.country = country
+    if (email) {
+      this.email = email
+    }
+    if (password) {
+      this.password = password
+    }
+    if (name) {
+      this.name = name
+    }
+    if (bio) {
+      this.bio = bio
+    }
+    if (country) {
+      this.country = country
+    }
   }
 }
 

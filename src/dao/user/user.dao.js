@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb')
 const config = require('../../config/variables.config')
 
 class UsersDao {
@@ -20,6 +21,21 @@ class UsersDao {
         email
       })
       return user
+    } catch (err) {
+      throw new Error()
+    }
+  }
+
+  static async updateUser (id, data) {
+    try {
+      await this.usersCollection.findOneAndUpdate(
+        {
+          _id: ObjectId(id)
+        },
+        {
+          $set: data
+        }
+      )
     } catch (err) {
       throw new Error()
     }
