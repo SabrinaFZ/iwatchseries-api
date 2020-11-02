@@ -1,13 +1,10 @@
-class User {
-  constructor ({ id, email, password, name, bio, country }) {
+class UserDTO {
+  constructor ({ id, email, name, bio, country }) {
     if (id) {
       this.id = id
     }
     if (email) {
       this.email = email
-    }
-    if (password) {
-      this.password = password
     }
     if (name) {
       this.name = name
@@ -21,4 +18,4 @@ class User {
   }
 }
 
-module.exports = User
+module.exports = UserDTO
