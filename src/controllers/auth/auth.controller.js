@@ -1,26 +1,28 @@
-const { registerService, loginService } = require('../../services/auth/auth.service')
+const AuthService = require('../../services/auth/auth.service')
 
-const CREATE_USER_SUCESS = 'User created successfully!'
+function AuthController () {
+  async function register (req, res) {
+    try {
+      await AuthService.register(req)
+      return res.status(201).send({ message: 'User created successfully!' })
+    } catch (error) {
+      return res.status(400).send({ message: error.toString() })
+    }
+  }
 
-async function registerController (req, res) {
-  try {
-    await registerService(req)
-    return res.status(201).send({ message: CREATE_USER_SUCESS })
-  } catch (error) {
-    return res.status(400).send({ message: error.toString() })
+  async function login (req, res) {
+    try {
+      const authDTO = await AuthService.login(req)
+      return res.status(200).send(authDTO)
+    } catch (error) {
+      return res.status(500).send({ message: error.message || 'Ups, an internal error have occurred!' })
+    }
+  }
+
+  return {
+    register,
+    login
   }
 }
 
-async function loginController (req, res) {
-  try {
-    const authDTO = await loginService(req)
-    return res.status(200).send(authDTO)
-  } catch (error) {
-    return res.status(500).send({ message: error.message || 'Ups, an internal error have occurred!' })
-  }
-}
-
-module.exports = {
-  registerController,
-  loginController
-}
+module.exports = AuthController()
