@@ -1,7 +1,7 @@
 const UsersDao = require('../../dao/user/user.dao')
 const User = require('../../models/user/user.model')
 
-async function updateUserService (req, res) {
+async function updateUserService (req) {
   try {
     const user = new User({
       name: req.body.name,
@@ -14,6 +14,15 @@ async function updateUserService (req, res) {
   }
 }
 
+async function deleteUserService (req) {
+  try {
+    await UsersDao.deleteUser(req.params.id)
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 module.exports = {
-  updateUserService
+  updateUserService,
+  deleteUserService
 }

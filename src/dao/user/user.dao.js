@@ -40,6 +40,18 @@ class UsersDao {
       throw new Error()
     }
   }
+
+  static async deleteUser (id) {
+    try {
+      await this.usersCollection.remove(
+        {
+          _id: ObjectId(id)
+        }
+      )
+    } catch (err) {
+      throw new Error()
+    }
+  }
 }
 
 module.exports = UsersDao

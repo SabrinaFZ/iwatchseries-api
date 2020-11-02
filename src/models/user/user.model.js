@@ -1,5 +1,5 @@
 class User {
-  constructor ({ id, email, password, name, bio, country}) {
+  constructor ({ id, email, password, name, bio, country }) {
     if (id) {
       this.id = id
     }
