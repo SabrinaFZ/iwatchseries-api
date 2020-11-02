@@ -23,7 +23,7 @@ function AuthService () {
       if (!req.body.email && !req.body.password) {
         throw new Error('No username and/or password were provided. Try again!')
       }
-      const user = await UsersDao.findUser(req.body.email)
+      const user = await UsersDao.findUserByEmail(req.body.email)
       if (!user) {
         throw new Error('User not found!')
       }

@@ -15,10 +15,21 @@ class UsersDao {
     }
   }
 
-  static async findUser (email) {
+  static async findUserByEmail (email) {
     try {
       const user = await this.usersCollection.findOne({
         email
+      })
+      return user
+    } catch (err) {
+      throw new Error()
+    }
+  }
+
+  static async findUserById (id) {
+    try {
+      const user = await this.usersCollection.findOne({
+        _id: ObjectId(id)
       })
       return user
     } catch (err) {
