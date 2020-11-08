@@ -4,7 +4,7 @@
   "description": "Backend for iwatchseries app",
   "main": "src/app.js",
   "scripts": {
-    "start": "nodemon src/app.js",
+    "start": "nodemon -L ./src/app.js",
     "lint": "npx standard --fix"
   },
   "keywords": [
@@ -26,5 +26,11 @@
   "devDependencies": {
     "nodemon": "^2.0.6",
     "standard": "^15.0.0"
+  },
+  "standard": {
+    "ignore": [
+      "node_modules",
+      "docker-entrypoint-initdb.d"
+    ]
   }
 }

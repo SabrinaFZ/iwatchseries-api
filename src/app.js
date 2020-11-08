@@ -3,7 +3,7 @@ const express = require('express')
 const config = require('./config/variables.config')
 const mongoClient = require('./config/mongo.config')
 
-const routes = require('./routes/')
+const routes = require('./routes')
 
 function startServer () {
   const app = express()

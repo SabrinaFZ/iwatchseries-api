@@ -3,9 +3,8 @@
 API for [iwatchseries app](https://github.com/SabrinaFZ/iwatchseries)
 
 ## Pre-requisites
-1. Install [MongoDB](https://docs.mongodb.com/manual/administration/install-community/)
-2. Enable [Authentication Control](https://docs.mongodb.com/manual/tutorial/enable-authentication/)
-3. Install [Node.js](https://nodejs.org/es/download/)
+1. Install [Docker](https://www.docker.com/products/docker-desktop)
+2. Install [Node.js](https://nodejs.org/es/download/)
 
 ## Setup
 1. Clone the repo in your machine
@@ -24,15 +23,27 @@ JWT_SECRET=random_secret
 ```
 npm i
 ```
-4. Run the server
+4. Build the image for the container
 ```
-npm run start
+docker-compose build
+```
+5. Start running  the container
+```
+docker-compose up -d
+```
+**In case of restarting the docker container from scratch**
+```
+docker-compose down
+docker volume rm iwatchseries-api_mongodbdata
+docker-compose build
+docker-compose up -d
 ```
 
 ## Build with
 - MongoDB
 - NodeJs
 - Express
+- Docker
 
 ## Authors 
 - [SabrinaFZ](https://github.com/SabrinaFZ)

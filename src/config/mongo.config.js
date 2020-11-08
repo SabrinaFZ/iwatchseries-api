@@ -4,7 +4,7 @@ const schemas = require('../schemas')
 const UsersDao = require('../dao/user/user.dao')
 const ListDao = require('../dao/list/list.dao')
 
-const uri = config.mongoUri + '/' + config.mongoDb
+const uri = config.mongoUri
 const client = new MongoClient(uri, {
   useUnifiedTopology: true,
   maxPoolSize: 5,
